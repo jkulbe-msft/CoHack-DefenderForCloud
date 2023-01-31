@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "actions": {
+            "value": [
+              "Microsoft.Authorization/*/read",
+              "Microsoft.Insights/alertRules/read",
+              "Microsoft.operationalInsights/workspaces/*/read",
+              "Microsoft.Resources/deployments/*/read",
+              "Microsoft.Security/*/read",
+              "Microsoft.IoTSecurity/*/read",
+              "Microsoft.Support/*/read",
+              "Microsoft.Security/iotDefenderSettings/packageDownloads/action",
+              "Microsoft.Security/iotDefenderSettings/downloadManagerActivation/action",
+              "Microsoft.Security/iotSensors/downloadResetPassword/action",
+              "Microsoft.IoTSecurity/defenderSettings/packageDownloads/action",
+              "Microsoft.IoTSecurity/defenderSettings/downloadManagerActivation/action",
+              "Microsoft.Management/managementGroups/read"
+            ]
+        },
+        "notActions": {
+            "value": []
+        },
+        "roleName": {
+            "value": "Limited Security Reader"
+        },
+        "roleDescription": {
+            "value": "Security Reader Role but unable to list RGs"
+        }
+    }
+}
