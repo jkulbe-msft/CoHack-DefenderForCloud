@@ -26,9 +26,11 @@
     }
   },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "storageName": "[toLower( concat( parameters('vmName'), uniqueString(resourceGroup().id) ) )]"
+    },
     "resources": [{
-        "name": "[toLower('CoHackDfCVMstorage')]",
+        "name": "[variables('storageName')]",
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2021-04-01",
         "location": "[resourceGroup().location]",
@@ -51,7 +53,7 @@
         "properties": {
             "publicIPAllocationMethod": "Dynamic",
             "dnsSettings": {
-                "domainNameLabel": "[toLower('CoHackDfCVM')]"
+                "domainNameLabel": "[toLower(variables('storageName'))]"
             }
         }
     },
@@ -144,7 +146,7 @@
         "apiVersion": "2021-03-01",
         "location": "[resourceGroup().location]",
         "dependsOn": [
-            "[resourceId('Microsoft.Storage/storageAccounts', toLower('CoHackDfCVMstorage'))]",
+            "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]",
             "[resourceId('Microsoft.Network/networkInterfaces', 'CoHackDfCVM-NetworkInterface')]"
         ],
         "tags": {
@@ -182,7 +184,7 @@
             "diagnosticsProfile": {
                 "bootDiagnostics": {
                     "enabled": true,
-                    "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('CoHackDfCVMstorage'))).primaryEndpoints.blob]"
+                    "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName'))).primaryEndpoints.blob]"
                 }
             }
         }
