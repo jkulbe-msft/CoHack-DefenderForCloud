@@ -32,7 +32,13 @@ New-AzResourceGroup -Name $ResourceGroup -Location $Location -Force
 New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroup -TemplateFile .\CohackDfCRG.json -TemplateParameterFile .\CohackDfCRG.parameters.json -adminPassword (ConvertTo-SecureString -String $Password -AsPlainText -Force)
 
 # create a user with limited permissions
+
+# Install AzureAD module
+# Install-Module AzureAD
+# Import-Module AzureAD
+
 Write-Host "Creating User"
+Import-Module AzureAD
 Connect-AzureAD
 $UPN = $username + '@' + (Get-AzureADDomain | Select-Object -First 1).Name
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
