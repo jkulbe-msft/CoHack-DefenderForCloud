@@ -38,22 +38,28 @@ New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroup -TemplateFile .\
 # Import-Module AzureAD
 
 Write-Host "Creating User"
-Import-Module AzureAD
-Connect-AzureAD
-$UPN = $username + '@' + (Get-AzureADDomain | Select-Object -First 1).Name
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = $Password
-$PasswordProfile.ForceChangePasswordNextLogin = $false
-New-AzureADUser -DisplayName $UserName -PasswordProfile $PasswordProfile -UserPrincipalName $UPN -AccountEnabled $true -MailNickName "$UserName" -UsageLocation 'US'
+if (!(Get-Module Microsoft.Graph -ListAvailable))
+{
+    Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+    Install-Module Microsoft.Graph
+}
+
+Connect-MgGraph -Scopes 'User.ReadWrite.All','Directory.Read.All','Domain.Read.All'
+$UPN = $username + '@' + (Get-MgDomain | ? IsDefault).Id
+$PasswordProfile = @{
+  Password = $Password
+  ForceChangePasswordNextSignIn = $false
+}
+$User = New-MgUser -DisplayName $UserName -PasswordProfile $PasswordProfile -UserPrincipalName $UPN -AccountEnabled -MailNickName "$UserName" -UsageLocation 'US'
 
 Write-Host "Created user $UPN with password $Password"
 
 # RBAC
 Write-Host "Assigning contributor rights for user $UPN on RG $ResourceGroup"
-New-AzRoleAssignment -SignInName $UPN -RoleDefinitionName "Contributor" -ResourceGroupName $ResourceGroup
+New-AzRoleAssignment -ObjectId $User.Id -RoleDefinitionName "Contributor" -ResourceGroupName $ResourceGroup
 
 Write-Host "Assigning Limited Security Reader rights for user $UPN on subscription $($subscription.name)"
-New-AzRoleAssignment -SignInName $UPN -RoleDefinitionName "Limited Security Reader" -Scope "/subscriptions/$($subscription.id)"
+New-AzRoleAssignment -ObjectId $User.Id -RoleDefinitionName "Limited Security Reader" -Scope "/subscriptions/$($subscription.id)"
 
 # enable Defender for Cloud standard pricing tier
 Write-Host "Enabling Defender for Cloud Standard Pricing"
