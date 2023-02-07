@@ -38,7 +38,7 @@ Attendees will get access to an Azure Subscription where a prebuilt deployment i
 
 1. Verify Defender for Server plan is enabled
 2. Verify autoprovisioning is enabled and find where the events are going
-3. Review security recommendations for your subscription. Which recommendation increses Secre Score the most?
+3. Review security recommendations for your subscription. Which recommendation increases Secure Score the most?
 4. Find security recommendations for your sample VM (hint: you can look at the VM directly) and apply a fix for one (e.g., "Machines should be configured to periodically check for missing system updates")
 5. Find another recommendation for your sample VM and create an exemption. The exemption should expire after a week.
 6. Check regulatory compliance and download a report
