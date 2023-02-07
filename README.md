@@ -12,7 +12,7 @@ During the mini-Open Hack you will be working with Defender for Cloud features s
 
 ## Provided Setup
 
-Attendees will get access to an Azure Subscription where a prebuilt deployment is ready.  This includes some a VM, a Log Analytics Workspace, some networking resources and a preconfigured Defender for Cloud setup.
+Attendees will get access to an Azure Subscription where a prebuilt deployment is ready.  This includes a VM, a Log Analytics Workspace, some networking resources and a preconfigured Defender for Cloud setup.
 
 ## Useful References
 
