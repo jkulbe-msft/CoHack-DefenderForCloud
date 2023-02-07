@@ -30,7 +30,7 @@ Attendees will get access to an Azure Subscription where a prebuilt deployment i
 - Azure virtual machine: This Azure virtual machine is already onboarded to Defender for Cloud. It's probably not configured perfectly from a security perspective. You do not need to sign in to this VM.
 - Defender for Cloud service: Defender for Cloud is enabled on your subscription and your VM has been automatically onboarded to send data. You have limited permissions in Defender for Cloud, so you can see the security recommendations for the entire subscription and allresources, but you can only remediate ressoures in your resource group. 
 
-![architecture](./images/CoHackDfC.png)
+![architecture](./images/CoHackDfC.jpg)
 
 ## Success Criteria
 
