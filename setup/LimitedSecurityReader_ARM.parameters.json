@@ -11,6 +11,8 @@
               "Microsoft.Security/*/read",
               "Microsoft.IoTSecurity/*/read",
               "Microsoft.Support/*/read",
+              "Microsoft.Authorization/policyExemptions/*",
+              "Microsoft.Security/locations/jitNetworkAccessPolicies/write",
               "Microsoft.Security/iotDefenderSettings/packageDownloads/action",
               "Microsoft.Security/iotDefenderSettings/downloadManagerActivation/action",
               "Microsoft.Security/iotSensors/downloadResetPassword/action",
