@@ -14,6 +14,18 @@ During the mini-Open Hack you will be working with Defender for Cloud features s
 
 Attendees will get access to an Azure Subscription where a prebuilt deployment is ready.  This includes a VM, a Log Analytics Workspace, some networking resources and a preconfigured Defender for Cloud setup.
 
+### Setup instructions (coach only) - run at least 1 hour before the CoHack
+- open [Azure Cloud Shell](https://shell.azure.com)
+- upload all files from the setup folder to Cloud Shell or git clone this repository
+- switch to PowerShell mode
+- run New-CoHackDfC.ps1
+- navigate to the [Azure Portal](https://portal.azure.com)
+- open Defender for Cloud
+- click General/Security alerts
+- on the top navigation bar select "sample alerts" and click "create sample alerts"
+
+Note the setup script will configure Defender for Server autoprovisioning to connect your servers to the Log Analytics workspace created for this exercise. If you do not want this, please skip the section "enable autoprovisioning" in the setup script and configure the test VMs to log to the correct workspace manually.
+
 ## Useful References
 
 - [Quickstart: Enable enhanced security features](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-enhanced-security)
