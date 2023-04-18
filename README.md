@@ -1,8 +1,8 @@
-# Azure Defender for Cloud MiniHack
+# Azure Defender for Cloud CoHack
 
 ## Overview
 
-This challenge-based Azure Defender for Cloud Hackathon is intended to teach how to enhance the security of your Azure workloads using Defender for Cloud.
+This challenge-based Azure Defender for Cloud CoHack is intended to teach how to enhance the security of your Azure workloads using Defender for Cloud.
 During the mini-Open Hack you will be working with Defender for Cloud features such as Secure Score, security recommendations, regulatory compliance, workload protections and alerts.
 
 ## Goals
