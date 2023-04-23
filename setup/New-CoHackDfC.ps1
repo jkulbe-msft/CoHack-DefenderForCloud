@@ -10,7 +10,7 @@ param (
 )
 $subscription = (Get-AzContext).Subscription
 # quick and dirty password generator, not perfect, any character will be picked only once
-$Password = ("ABCDEFGHKLMNOPRSTUVWXYZabcdefghiklmnoprstuvwxyz0123456789$!#".tochararray() | Get-Random -Count 12) -join ''
+$Password = (("ABCDEFGHKLMNOPRSTUVWXYZabcdefghiklmnoprstuvwxyz0123456789$!#".tochararray() | Get-Random -Count 9) -join '') + "dC!"
 
 # register resource provider for Defender for Cloud
 Write-Host "Registering Defender for Cloud resource provider"
@@ -44,7 +44,7 @@ if (!(Get-Module Microsoft.Graph -ListAvailable))
     Install-Module Microsoft.Graph
 }
 
-Connect-MgGraph -Scopes 'User.ReadWrite.All','Directory.Read.All','Domain.Read.All'
+Connect-MgGraph -Scopes 'User.ReadWrite.All','Directory.Read.All','Domain.Read.All' -UseDeviceAuthentication
 $UPN = $username + '@' + (Get-MgDomain | ? IsDefault).Id
 $PasswordProfile = @{
   Password = $Password
