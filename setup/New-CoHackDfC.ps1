@@ -71,5 +71,7 @@ $laws = Get-AzResource -Name "CoHackDfC-laws"
 Set-AzSecurityWorkspaceSetting -Name "default" -Scope "/subscriptions/$($subscription.id)" -WorkspaceId $laws.ResourceId
 Set-AzSecurityAutoProvisioningSetting -Name "default" -EnableAutoProvision
 
+Write-Host "Created user $UPN with password $Password"
 # add sample alerts
 # manual action in Defender for Cloud/Security Alerts only?
+Write-Host "please remember to add your sample alerts in Defender for Cloud/SecurityAlerts/Sample Alerts"
