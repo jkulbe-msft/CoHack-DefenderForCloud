@@ -15,7 +15,8 @@ if (!(Get-Module Microsoft.Graph -ListAvailable))
 }
 	
 Connect-MgGraph -Scopes 'User.ReadWrite.All','Directory.Read.All','Domain.Read.All'
-remove-MgUser -UserId "CoHackDfCUser@azure4lab.tk"
+$UPN = 'CoHackDfCUser@' + (Get-MgDomain | ? IsDefault).Id
+remove-MgUser -UserId $UPN
 
 Write-Host "Disabling Defender for server"
 Set-AzSecurityPricing -Name "VirtualMachines" -PricingTier "free"
